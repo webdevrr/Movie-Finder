@@ -1,0 +1,21 @@
+.movie-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vh;
+}
+
+.movie-input {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 60%;
+  width: 30%;
+  font-size: 100%;
+  margin-right: 20px;
+  text-align: center;
+}
+.movie-button {
+  cursor: pointer;
+  height: 60%;
+  width: 5%;
+}

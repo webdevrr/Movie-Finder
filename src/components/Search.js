@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import api from "../api";
+import "./Search.css";
 
 const Search = ({ getMovies }) => {
   const [search, setSearch] = useState("");
@@ -14,12 +15,9 @@ const Search = ({ getMovies }) => {
         `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${search}`
       )
       .then(response => {
-        console.log(response.data);
-
         const responseData = response.data.results;
         const maxPages = response.data.total_pages;
 
-        //eslint-disable-next-line
         function filterPoster(mov) {
           if (mov.poster_path) {
             return mov;
@@ -27,21 +25,24 @@ const Search = ({ getMovies }) => {
         }
         //filter movies that doesn't contain  poster
         const afterFilter = responseData.filter(filterPoster);
-
-        getMovies(afterFilter, search, maxPages);
+        getMovies({ afterFilter, search, maxPages });
       });
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form className="movie-form" onSubmit={handleSubmit}>
         <input
+          autoComplete="off"
+          className="movie-input"
           value={search}
           type="text"
           name="search"
           onChange={handleChange}
         />
-        <button type="submit">search</button>
+        <button className="movie-button" type="submit">
+          search
+        </button>
       </form>
     </div>
   );

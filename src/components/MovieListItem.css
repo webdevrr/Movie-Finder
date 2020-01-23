@@ -1,0 +1,14 @@
+.movie-item {
+  margin: 4% 0;
+  width: 40%;
+}
+.movie-image {
+  margin-top: 2%;
+  border-radius: 5px;
+  width: 70%;
+}
+.movie-title {
+  color: #ffe066;
+  text-shadow: 2px 2px black;
+  font-size: 1em;
+}

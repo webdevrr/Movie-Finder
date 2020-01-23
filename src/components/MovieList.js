@@ -1,11 +1,14 @@
 import React from "react";
-import MovieItem from "./MovieItem";
+import MovieItem from "./MovieListItem";
+import "./MovieList.css";
 
-const MovieList = ({ movies }) => {
+const MovieList = ({ movies, clickedMovie }) => {
   return (
-    <div>
+    <div className="movie-list">
       {movies.map(movie => {
-        return <MovieItem key={movie.id} movie={movie} />;
+        return (
+          <MovieItem key={movie.id} movie={movie} clickedMovie={clickedMovie} />
+        );
       })}
     </div>
   );
