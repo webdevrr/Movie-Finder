@@ -14,7 +14,7 @@ const App = () => {
   const [query, setQuery] = useState(null);
   const [max, setMax] = useState(null);
   const [page, setPage] = useState(2);
-  const [clicked, setClicked] = useState(null);
+
   //infinite scroll settup
   useEffect(() => {
     if (max >= page) {
@@ -47,9 +47,7 @@ const App = () => {
     }
     //eslint - disable - next - line;
   }, [movies, query, page, max]);
-  const clickedMovie = obj => {
-    setClicked(obj);
-  };
+
   const getMovies = movie => {
     const { afterFilter, search, maxPages } = movie;
     setMovies(afterFilter);
@@ -70,17 +68,13 @@ const App = () => {
                 {movies === null ? (
                   <h2>Search for movies or TV series</h2>
                 ) : (
-                  <MovieList movies={movies} clickedMovie={clickedMovie} />
+                  <MovieList movies={movies} />
                 )}
               </>
             )}
           />
 
-          <Route
-            exact
-            path="/movie/:title"
-            render={() => <MovieItem clicked={clicked} />}
-          />
+          <Route exact path="/:type/:id" render={() => <MovieItem />} />
         </Switch>
       </Router>
     </div>

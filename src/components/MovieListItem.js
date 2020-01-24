@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./MovieListItem.css";
 
-const MovieListItem = ({ movie, clickedMovie }) => {
-  const { poster_path, title, original_name } = movie;
+const MovieListItem = ({ movie }) => {
+  const { poster_path, title, original_name, id, media_type } = movie;
+
   const renderTitle = () => {
     if (!title) {
       return original_name;
@@ -12,9 +13,9 @@ const MovieListItem = ({ movie, clickedMovie }) => {
     }
   };
   return (
-    <div className="movie-item" onClick={() => clickedMovie(movie)}>
+    <div className="movie-item">
       <h2 className="movie-title">{renderTitle()}</h2>
-      <Link to={`/movie/${renderTitle()}`}>
+      <Link to={`/${media_type}/${id}`}>
         <img
           className="movie-image"
           src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
