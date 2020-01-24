@@ -13,11 +13,11 @@ const MovieListItem = ({ movie }) => {
     }
   };
   return (
-    <div className="movie-item">
-      <h2 className="movie-title">{renderTitle()}</h2>
+    <div className="movie-list-item">
+      <h2 className="movie-list-title">{renderTitle()}</h2>
       <Link to={`/${media_type}/${id}`}>
         <img
-          className="movie-image"
+          className="movie-list-image"
           src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
           alt={title}
         />

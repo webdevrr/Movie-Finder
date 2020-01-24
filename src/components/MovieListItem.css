@@ -1,14 +1,19 @@
-.movie-item {
+.movie-list-item {
   margin: 4% 0;
   width: 40%;
 }
-.movie-image {
+.movie-list-image {
   margin-top: 2%;
   border-radius: 5px;
   width: 70%;
+  transition: transform 0.3s ease;
 }
-.movie-title {
+.movie-list-title {
   color: #ffe066;
   text-shadow: 2px 2px black;
   font-size: 1em;
+}
+
+.movie-list-image:hover {
+  transform: scale(1.2);
 }
