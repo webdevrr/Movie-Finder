@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import MovieItem from "./MovieListItem";
 import "./MovieList.css";
 
-const MovieList = ({ movies }) => {
+const MovieList = memo(({ movies }) => {
   return (
     <div className="movie-list">
       {movies.map(movie => {
@@ -10,6 +10,6 @@ const MovieList = ({ movies }) => {
       })}
     </div>
   );
-};
+});
 
 export default MovieList;
