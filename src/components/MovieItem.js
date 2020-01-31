@@ -14,6 +14,15 @@ const MovieItem = () => {
   const typeAndId = location.pathname.split("/");
   const type = typeAndId[1];
   const id = typeAndId[2];
+  let {
+    poster_path,
+    title,
+    original_name,
+    overview,
+    vote_average,
+    vote_count,
+    genres
+  } = data;
 
   useEffect(
     () => {
@@ -29,16 +38,6 @@ const MovieItem = () => {
     //eslint-disable-next-line
     []
   );
-
-  let {
-    poster_path,
-    title,
-    original_name,
-    overview,
-    vote_average,
-    vote_count,
-    genres
-  } = data;
 
   const renderTitle = () => {
     if (!title) {

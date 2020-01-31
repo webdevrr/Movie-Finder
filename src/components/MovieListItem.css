@@ -1,6 +1,7 @@
 .movie-list-item {
   margin: 4% 0;
   width: 40%;
+  min-height: 20vh;
 }
 .movie-list-image {
   margin-top: 2%;
@@ -16,4 +17,10 @@
 
 .movie-list-image:hover {
   transform: scale(1.2);
+}
+.movie-list-item-spinner-container {
+  position: relative;
+  margin-top: 50%;
+}
+.movie-list-item-spinner {
 }
