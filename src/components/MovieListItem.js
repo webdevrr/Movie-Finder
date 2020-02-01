@@ -19,7 +19,7 @@ const MovieListItem = ({ movie }) => {
   };
 
   return (
-    <div className="movie-list-item">
+    <li className="movie-list-item">
       <h2 className="movie-list-title">{renderTitle()}</h2>
       <Link to={`/${media_type}/${id}`}>
         <div
@@ -44,7 +44,7 @@ const MovieListItem = ({ movie }) => {
           alt={title}
         />
       </Link>
-    </div>
+    </li>
   );
 };
 

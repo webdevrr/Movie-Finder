@@ -6,7 +6,7 @@ import "./MovieList.css";
 const MovieList = memo(({ movies, max, page }) => {
   return (
     <div className="movie-list">
-      <div className="movie-list-list">
+      <ul className="movie-list-list">
         {movies.length === 0 ? (
           <h2>Not found</h2>
         ) : (
@@ -16,7 +16,7 @@ const MovieList = memo(({ movies, max, page }) => {
             );
           })
         )}
-      </div>
+      </ul>
       {max !== 0 && page !== 2 ? <EndOfResulst page={page} max={max} /> : null}
     </div>
   );

@@ -25,7 +25,7 @@ const App = () => {
     if (max >= page) {
       window.onscroll = debounce(() => {
         if (
-          window.innerHeight + document.documentElement.scrollTop + 5 >=
+          window.innerHeight + document.documentElement.scrollTop + 20 >=
           document.documentElement.offsetHeight
         ) {
           setIsLoading(true);

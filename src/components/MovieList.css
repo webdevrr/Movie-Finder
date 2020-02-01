@@ -5,3 +5,6 @@
   flex-wrap: wrap;
   margin: auto;
 }
+.movie-list-list {
+  list-style-type: none;
+}

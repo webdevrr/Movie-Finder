@@ -20,7 +20,5 @@
 }
 .movie-list-item-spinner-container {
   position: relative;
-  margin-top: 50%;
-}
-.movie-list-item-spinner {
+  margin-top: 35%;
 }

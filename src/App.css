@@ -4,3 +4,8 @@
 .App h2 {
   font-size: 1.3em;
 }
+p,
+h1,
+h2 {
+  color: black;
+}
