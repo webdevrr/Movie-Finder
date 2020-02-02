@@ -3,13 +3,15 @@ import uuid from "uuid";
 import api from "./api";
 import NotFound from "./components/NotFound";
 import MovieItem from "./components/MovieItem";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import MovieList from "./components/MovieList";
 import Search from "./components/Search";
 import "./App.css";
 
 const App = () => {
+  let history = useHistory();
   const [fetchedMovies, setFetchedMovies] = useState([]);
+
   function filterPoster(mov) {
     if (mov.poster_path) {
       return mov;
@@ -31,36 +33,44 @@ const App = () => {
       const afterFilter = responseData.filter(filterPoster);
       const addedUuid = afterFilter.map(v => ({ ...v, uuid: uuid() }));
       setFetchedMovies(prevState => [...prevState, ...addedUuid]);
+      history.push(`/search/${query.split(" ").join("-")}/1`);
     }
   };
 
   return (
     <div className="App">
-      <Router>
-        <Switch>
-          <Route
-            path="/"
-            exact
-            render={() => (
-              <div className="app-search">
-                <Search getMovies={getMovies} />
-                {fetchedMovies.length === 0 ? (
-                  <h2>Search for movies or TV series</h2>
-                ) : (
-                  <MovieList movies={fetchedMovies} />
-                )}
-              </div>
-            )}
-          />
-          <Route
-            exact
-            path="/search/:query/:page"
-            render={() => <MovieList movies={fetchedMovies} />}
-          />
-          <Route exact path="/:type/:id" render={() => <MovieItem />} />
-          <Route component={NotFound} />
-        </Switch>
-      </Router>
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={() => (
+            <div className="app-search">
+              <Search getMovies={getMovies} />
+              {fetchedMovies.length === 0 ? (
+                <h2>Search for movies or TV series</h2>
+              ) : (
+                <MovieList movies={fetchedMovies} />
+              )}
+            </div>
+          )}
+        />
+        <Route
+          exact
+          path="/search/:query/:page"
+          render={() => (
+            <div className="app-search">
+              <Search getMovies={getMovies} />
+              {fetchedMovies.length === 0 ? (
+                <h2>Search for movies or TV series</h2>
+              ) : (
+                <MovieList movies={fetchedMovies} />
+              )}
+            </div>
+          )}
+        />
+        <Route exact path="/:type/:id" render={() => <MovieItem />} />
+        <Route component={NotFound} />
+      </Switch>
     </div>
   );
 };
