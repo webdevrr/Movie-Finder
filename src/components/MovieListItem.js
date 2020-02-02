@@ -40,7 +40,7 @@ const MovieListItem = ({ movie }) => {
             handleOnLoad();
           }}
           className="movie-list-image"
-          src={`https://image.tmdb.org/t/p/w500/${poster_path}`}
+          src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
           alt={title}
         />
       </Link>

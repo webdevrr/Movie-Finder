@@ -1,25 +1,63 @@
-import React, { memo } from "react";
+import React, { memo, useState, useEffect } from "react";
 import MovieItem from "./MovieListItem";
-import EndOfResulst from "./EndOfResulst";
+import Pagination from "react-bootstrap/Pagination";
+
 import "./MovieList.css";
 
-const MovieList = memo(({ movies, max, page }) => {
+const MovieList = ({ movies }) => {
+  const resultsPerPage = 10;
+  const [currentMovies, setCurrentMovies] = useState(
+    movies.slice(0, resultsPerPage)
+  );
+  const [currentPage, setCurrentPage] = useState(1);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentPage]);
+
+  const handleClick = arg => {
+    if (arg === "next") {
+      const index1 = currentPage * resultsPerPage;
+      const index2 = (currentPage + 1) * resultsPerPage;
+      const nextMovies = movies.slice(index1, index2);
+      setCurrentMovies(nextMovies);
+      setCurrentPage(currentPage + 1);
+    } else if (arg === "prev") {
+      const index1 = Math.abs(resultsPerPage - (currentPage - 1) * 10);
+      const index2 = (currentPage - 1) * resultsPerPage;
+      const prevMovies = movies.slice(index1, index2);
+      setCurrentMovies(prevMovies);
+      setCurrentPage(currentPage - 1);
+    }
+  };
   return (
     <div className="movie-list">
       <ul className="movie-list-list">
-        {movies.length === 0 ? (
-          <h2>Not found</h2>
-        ) : (
-          movies.map(movie => {
-            return (
-              <MovieItem key={`${movie.id}${movie.vote_count}`} movie={movie} />
-            );
-          })
-        )}
+        {currentMovies.map(movie => (
+          <MovieItem key={`${movie.uuid}`} movie={movie} />
+        ))}
       </ul>
-      {max !== 0 && page !== 2 ? <EndOfResulst page={page} max={max} /> : null}
+      <Pagination>
+        {currentPage === 1 ? null : (
+          <Pagination.Prev
+            onClick={() => {
+              handleClick("prev");
+            }}
+          />
+        )}
+
+        <Pagination.Item>{`${currentPage} / ${Math.ceil(
+          movies.length / resultsPerPage
+        )}`}</Pagination.Item>
+        {currentPage * resultsPerPage < movies.length ? (
+          <Pagination.Next
+            onClick={() => {
+              handleClick("next");
+            }}
+          />
+        ) : null}
+      </Pagination>
     </div>
   );
-});
+};
 
 export default MovieList;

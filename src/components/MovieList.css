@@ -4,7 +4,14 @@
   justify-content: center;
   flex-wrap: wrap;
   margin: auto;
-}
-.movie-list-list {
   list-style-type: none;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+.pagination a {
+  background-color: #081c24;
+  border: 1px solid black;
 }
