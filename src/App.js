@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import uuid from "uuid";
 import api from "./api";
 import NotFound from "./components/NotFound";
@@ -9,7 +9,6 @@ import Search from "./components/Search";
 import "./App.css";
 
 const App = () => {
-  let movieApp = useRef(null);
   const [fetchedMovies, setFetchedMovies] = useState([]);
   function filterPoster(mov) {
     if (mov.poster_path) {
@@ -17,7 +16,6 @@ const App = () => {
     }
   }
   const getMovies = async query => {
-    movieApp.style.top = "0";
     setFetchedMovies([]);
     let res = await api.get(
       `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}`
@@ -44,12 +42,7 @@ const App = () => {
             path="/"
             exact
             render={() => (
-              <div
-                ref={element => {
-                  movieApp = element;
-                }}
-                className="app-search"
-              >
+              <div className="app-search">
                 <Search getMovies={getMovies} />
                 {fetchedMovies.length === 0 ? (
                   <h2>Search for movies or TV series</h2>
