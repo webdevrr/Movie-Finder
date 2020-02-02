@@ -4,12 +4,13 @@ import Pagination from "react-bootstrap/Pagination";
 
 import "./MovieList.css";
 
-const MovieList = ({ movies }) => {
+const MovieList = memo(({ movies }) => {
   const resultsPerPage = 10;
   const [currentMovies, setCurrentMovies] = useState(
     movies.slice(0, resultsPerPage)
   );
   const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
@@ -58,6 +59,6 @@ const MovieList = ({ movies }) => {
       </Pagination>
     </div>
   );
-};
+});
 
 export default MovieList;

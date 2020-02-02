@@ -1,8 +1,8 @@
 import React, { useState } from "react";
+
 import "./Search.css";
 const Search = ({ getMovies }) => {
   const [search, setSearch] = useState("");
-
   const handleChange = e => {
     setSearch(e.currentTarget.value);
   };
@@ -12,7 +12,7 @@ const Search = ({ getMovies }) => {
   };
 
   return (
-    <div>
+    <>
       <form className="movie-form" onSubmit={handleSubmit}>
         <input
           autoComplete="off"
@@ -26,7 +26,7 @@ const Search = ({ getMovies }) => {
           search
         </button>
       </form>
-    </div>
+    </>
   );
 };
 

@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import React, { useState, useRef } from "react";
 import uuid from "uuid";
 import api from "./api";
 import NotFound from "./components/NotFound";
@@ -10,37 +9,31 @@ import Search from "./components/Search";
 import "./App.css";
 
 const App = () => {
+  let movieApp = useRef(null);
   const [fetchedMovies, setFetchedMovies] = useState([]);
-
-  const getMovies = query => {
+  function filterPoster(mov) {
+    if (mov.poster_path) {
+      return mov;
+    }
+  }
+  const getMovies = async query => {
+    movieApp.style.top = "0";
     setFetchedMovies([]);
-    api
-      .get(
-        `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}`
-      )
-      .then(response => {
-        const max = response.data.total_pages;
+    let res = await api.get(
+      `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}`
+    );
+    const max = res.data.total_pages;
+    let current = res.data.page;
 
-        let current = response.data.page;
-        function filterPoster(mov) {
-          if (mov.poster_path) {
-            return mov;
-          }
-        }
-
-        for (current; current <= max; current++) {
-          api
-            .get(
-              `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}&page=${current}`
-            )
-            .then(response => {
-              const responseData = response.data.results;
-              const afterFilter = responseData.filter(filterPoster);
-              const addedUuid = afterFilter.map(v => ({ ...v, uuid: uuid() }));
-              setFetchedMovies(prevState => [...prevState, ...addedUuid]);
-            });
-        }
-      });
+    for (current; current <= max; current++) {
+      let res2 = await api.get(
+        `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}&page=${current}`
+      );
+      const responseData = res2.data.results;
+      const afterFilter = responseData.filter(filterPoster);
+      const addedUuid = afterFilter.map(v => ({ ...v, uuid: uuid() }));
+      setFetchedMovies(prevState => [...prevState, ...addedUuid]);
+    }
   };
 
   return (
@@ -51,15 +44,25 @@ const App = () => {
             path="/"
             exact
             render={() => (
-              <>
+              <div
+                ref={element => {
+                  movieApp = element;
+                }}
+                className="app-search"
+              >
                 <Search getMovies={getMovies} />
                 {fetchedMovies.length === 0 ? (
                   <h2>Search for movies or TV series</h2>
                 ) : (
                   <MovieList movies={fetchedMovies} />
                 )}
-              </>
+              </div>
             )}
+          />
+          <Route
+            exact
+            path="/search/:query/:page"
+            render={() => <MovieList movies={fetchedMovies} />}
           />
           <Route exact path="/:type/:id" render={() => <MovieItem />} />
           <Route component={NotFound} />
