@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-
 import "./Search.css";
-const Search = ({ getMovies }) => {
+import { fetchMovies } from "../redux/actions";
+import { useDispatch } from "react-redux";
+const Search = () => {
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const handleChange = e => {
     setSearch(e.currentTarget.value);
   };
   const handleSubmit = e => {
     e.preventDefault();
-    getMovies(search);
+    dispatch(fetchMovies(search));
   };
 
   return (

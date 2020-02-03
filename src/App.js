@@ -6,11 +6,16 @@ import MovieItem from "./components/MovieItem";
 import { Route, Switch, useHistory } from "react-router-dom";
 import MovieList from "./components/MovieList";
 import Search from "./components/Search";
+import { useSelector } from "react-redux";
+
 import "./App.css";
+import { fetchMovies } from "./redux/actions";
 
 const App = () => {
+  const movies = useSelector(state => state.movies.movies);
+  console.log(movies);
+
   let history = useHistory();
-  const [fetchedMovies, setFetchedMovies] = useState([]);
 
   function filterPoster(mov) {
     if (mov.poster_path) {
@@ -18,7 +23,6 @@ const App = () => {
     }
   }
   const getMovies = async query => {
-    setFetchedMovies([]);
     let res = await api.get(
       `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}`
     );
@@ -33,7 +37,7 @@ const App = () => {
       const responseData = res2.data.results;
       const afterFilter = responseData.filter(filterPoster);
       const addedUuid = afterFilter.map(v => ({ ...v, uuid: uuid() }));
-      setFetchedMovies(prevState => [...prevState, ...addedUuid]);
+      // setFetchedMovies(prevState => [...prevState, ...addedUuid]);
     }
   };
 
@@ -45,29 +49,11 @@ const App = () => {
           exact
           render={() => (
             <div className="app-search">
-              <Search getMovies={getMovies} />
-              {fetchedMovies.length === 0 ? (
+              <Search />
+              {movies.length === 0 ? (
                 <h2>Search for movies or TV series</h2>
               ) : (
-                <MovieList movies={fetchedMovies} />
-              )}
-            </div>
-          )}
-        />
-        <Route
-          exact
-          path="/search/:query/:page"
-          render={routeProps => (
-            <div className="app-search">
-              <Search getMovies={getMovies} />
-              {fetchedMovies.length === 0 ? (
-                <h2>Search for movies or TV series</h2>
-              ) : (
-                <MovieList
-                  {...routeProps}
-                  getMovies={getMovies}
-                  movies={fetchedMovies}
-                />
+                <MovieList />
               )}
             </div>
           )}
