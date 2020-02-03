@@ -32,6 +32,7 @@ const MovieList = memo(({ match }) => {
       window.scrollTo(0, 0);
     } else if (arg === "prev") {
       history.push(`/search/${query}/${page - 1}`);
+      window.scrollTo(0, document.body.scrollHeight);
     }
   };
   return (

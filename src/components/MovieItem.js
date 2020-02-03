@@ -7,6 +7,7 @@ import axios from "axios";
 import api from "../api";
 import CreditsList from "./CreditsList";
 import "./MovieItem.css";
+import poster from "../assets/poster.png";
 
 const MovieItem = () => {
   const star = <FontAwesomeIcon color="yellow" icon={faStar} size="2x" />;
@@ -33,6 +34,8 @@ const MovieItem = () => {
     () => {
       axios.all([api.get(getMovieOrTV), api.get(getCredits)]).then(
         axios.spread((data, credits) => {
+          console.log(data);
+
           setData(data.data);
           setCredits(credits.data);
           setIsLoading(false);
@@ -72,7 +75,11 @@ const MovieItem = () => {
           <div className="movie-item">
             <div className="image">
               <img
-                src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+                src={`${
+                  poster_path
+                    ? `https://image.tmdb.org/t/p/w300/${poster_path}`
+                    : poster
+                }`}
                 alt=""
               />
             </div>
