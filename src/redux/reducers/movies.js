@@ -1,10 +1,8 @@
-import { SET_MOVIES, SET_QUERY, CLEAR_MOVIES } from "../actionTypes";
+import { SET_MOVIES, SET_MAX, CLEAR_MOVIES } from "../actionTypes";
 
 const initialState = {
   movies: [],
-  maxPages: null,
-  query: "",
-  currentPage: 1
+  maxPages: null
 };
 
 export default function(state = initialState, action) {
@@ -17,14 +15,14 @@ export default function(state = initialState, action) {
     }
     case CLEAR_MOVIES: {
       return {
-        ...state,
-        initialState
+        ...initialState
       };
     }
-    case SET_QUERY: {
+
+    case SET_MAX: {
       return {
         ...state,
-        query: action.payload
+        maxPages: action.payload
       };
     }
     default:

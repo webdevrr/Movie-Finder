@@ -1,16 +1,17 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import "./Search.css";
-import { fetchMovies } from "../redux/actions";
-import { useDispatch } from "react-redux";
+
 const Search = () => {
-  const dispatch = useDispatch();
+  let history = useHistory();
+
   const [search, setSearch] = useState("");
   const handleChange = e => {
     setSearch(e.currentTarget.value);
   };
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(fetchMovies(search));
+    history.push(`/search/${search.split(" ").join("-")}/1`);
   };
 
   return (

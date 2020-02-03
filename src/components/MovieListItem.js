@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import poster from "../assets/poster.png";
 
 import "./MovieListItem.css";
 
@@ -40,7 +41,11 @@ const MovieListItem = ({ movie }) => {
             handleOnLoad();
           }}
           className="movie-list-image"
-          src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+          src={`${
+            poster_path
+              ? `https://image.tmdb.org/t/p/w300/${poster_path}`
+              : poster
+          }`}
           alt={title}
         />
       </Link>

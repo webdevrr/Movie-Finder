@@ -1,5 +1,5 @@
 import uuid from "uuid";
-import { SET_MOVIES, SET_QUERY, CLEAR_MOVIES } from "./actionTypes";
+import { SET_MOVIES, SET_MAX, CLEAR_MOVIES } from "./actionTypes";
 import api from "../api";
 
 export const setMovies = arr => {
@@ -8,33 +8,24 @@ export const setMovies = arr => {
     payload: arr
   };
 };
-export const setQuery = q => {
-  return { type: SET_QUERY, payload: q };
+export const setMax = max => {
+  return { type: SET_MAX, payload: max };
 };
 export const clearMovies = () => {
   return { type: CLEAR_MOVIES };
 };
-export const fetchMovies = query => {
-  function filterPoster(mov) {
-    if (mov.poster_path) {
-      return mov;
-    }
-  }
+
+export const fetchMovies = (query, page) => {
   return async dispatch => {
-    dispatch(setQuery(query));
+    dispatch(clearMovies());
+
     let res = await api.get(
-      `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}`
+      `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}&page=${page}`
     );
-    const max = res.data.total_pages;
-    let current = res.data.page;
-    for (current; current <= max; current++) {
-      let res2 = await api.get(
-        `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}&page=${current}`
-      );
-      const responseData = res2.data.results;
-      const afterFilter = responseData.filter(filterPoster);
-      const addedUuid = afterFilter.map(v => ({ ...v, uuid: uuid() }));
-      dispatch(setMovies(addedUuid));
-    }
+    const responseData = res.data.results;
+    const maxPages = res.data.total_pages;
+    const addedUuid = responseData.map(v => ({ ...v, uuid: uuid() }));
+    dispatch(setMovies(addedUuid));
+    dispatch(setMax(maxPages));
   };
 };
