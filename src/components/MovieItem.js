@@ -6,7 +6,6 @@ import Spinner from "react-bootstrap/Spinner";
 import axios from "axios";
 import api from "../api";
 import CreditsList from "./CreditsList";
-
 import "./MovieItem.css";
 
 const MovieItem = () => {

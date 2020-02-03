@@ -15,3 +15,6 @@
   background-color: #081c24;
   border: 1px solid black;
 }
+.pagination .counter {
+  pointer-events: none;
+}

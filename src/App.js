@@ -22,6 +22,7 @@ const App = () => {
     let res = await api.get(
       `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}`
     );
+    history.push(`/search/${query.split(" ").join("-")}/1`);
     const max = res.data.total_pages;
     let current = res.data.page;
 
@@ -33,7 +34,6 @@ const App = () => {
       const afterFilter = responseData.filter(filterPoster);
       const addedUuid = afterFilter.map(v => ({ ...v, uuid: uuid() }));
       setFetchedMovies(prevState => [...prevState, ...addedUuid]);
-      history.push(`/search/${query.split(" ").join("-")}/1`);
     }
   };
 
@@ -57,18 +57,26 @@ const App = () => {
         <Route
           exact
           path="/search/:query/:page"
-          render={() => (
+          render={routeProps => (
             <div className="app-search">
               <Search getMovies={getMovies} />
               {fetchedMovies.length === 0 ? (
                 <h2>Search for movies or TV series</h2>
               ) : (
-                <MovieList movies={fetchedMovies} />
+                <MovieList
+                  {...routeProps}
+                  getMovies={getMovies}
+                  movies={fetchedMovies}
+                />
               )}
             </div>
           )}
         />
-        <Route exact path="/:type/:id" render={() => <MovieItem />} />
+        <Route
+          exact
+          path="/:type/:id"
+          render={routeProps => <MovieItem {...routeProps} />}
+        />
         <Route component={NotFound} />
       </Switch>
     </div>
