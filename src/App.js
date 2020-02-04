@@ -16,7 +16,7 @@ const App = () => {
           render={() => (
             <div className="app-search">
               <Search />
-              <h2>Search for movies or TV series</h2>
+              <h2>Search for movies, TV series or people</h2>
             </div>
           )}
         />

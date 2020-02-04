@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import Spinner from "react-bootstrap/Spinner";
@@ -9,15 +8,12 @@ import CreditsList from "./CreditsList";
 import "./MovieItem.css";
 import poster from "../assets/poster.png";
 
-const MovieItem = () => {
+const MovieItem = ({ match }) => {
+  const { type, id } = match.params;
   const star = <FontAwesomeIcon color="yellow" icon={faStar} size="2x" />;
   const [data, setData] = useState({});
   const [credits, setCredits] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-  let location = useLocation();
-  const typeAndId = location.pathname.split("/");
-  const type = typeAndId[1];
-  const id = typeAndId[2];
   let {
     poster_path,
     title,
@@ -34,8 +30,6 @@ const MovieItem = () => {
     () => {
       axios.all([api.get(getMovieOrTV), api.get(getCredits)]).then(
         axios.spread((data, credits) => {
-          console.log(data);
-
           setData(data.data);
           setCredits(credits.data);
           setIsLoading(false);

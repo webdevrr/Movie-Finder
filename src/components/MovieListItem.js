@@ -6,13 +6,33 @@ import poster from "../assets/poster.png";
 import "./MovieListItem.css";
 
 const MovieListItem = ({ movie }) => {
-  const { poster_path, title, original_name, id, media_type } = movie;
+  const {
+    poster_path,
+    title,
+    original_name,
+    id,
+    media_type,
+    name,
+    profile_path
+  } = movie;
   const [isImageLoading, setIsImageLoading] = useState(true);
+
   const renderTitle = () => {
-    if (!title) {
-      return original_name;
-    } else {
+    if (name) {
+      return name;
+    } else if (!original_name) {
       return title;
+    } else {
+      return original_name;
+    }
+  };
+  const renderImage = () => {
+    if (name) {
+      return `https://image.tmdb.org/t/p/w300/${profile_path}`;
+    } else if (poster_path) {
+      return `https://image.tmdb.org/t/p/w300/${poster_path}`;
+    } else {
+      return poster;
     }
   };
   const handleOnLoad = () => {
@@ -41,11 +61,7 @@ const MovieListItem = ({ movie }) => {
             handleOnLoad();
           }}
           className="movie-list-image"
-          src={`${
-            poster_path
-              ? `https://image.tmdb.org/t/p/w300/${poster_path}`
-              : poster
-          }`}
+          src={renderImage()}
           alt={title}
         />
       </Link>
