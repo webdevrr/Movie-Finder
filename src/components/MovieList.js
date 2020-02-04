@@ -1,6 +1,7 @@
 import React, { memo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import MovieItem from "./MovieListItem";
 import { fetchMovies } from "../redux/actions";
@@ -10,8 +11,9 @@ import "./MovieList.css";
 
 const MovieList = memo(({ match }) => {
   let history = useHistory();
-  const { query } = match.params;
-  const page = parseInt(match.params.page);
+  let { query, page } = useParams();
+
+  const pageInt = parseInt(page);
   const dispatch = useDispatch();
 
   const movies = useSelector(state => state.movies.movies);
@@ -27,10 +29,10 @@ const MovieList = memo(({ match }) => {
 
   const handleClick = arg => {
     if (arg === "next") {
-      history.push(`/search/${query}/${page + 1}`);
+      history.push(`/search/${query}/${pageInt + 1}`);
       window.scrollTo(0, 0);
     } else if (arg === "prev") {
-      history.push(`/search/${query}/${page - 1}`);
+      history.push(`/search/${query}/${pageInt - 1}`);
     }
   };
   return (
