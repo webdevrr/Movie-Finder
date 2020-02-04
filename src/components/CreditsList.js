@@ -3,16 +3,18 @@ import CreditsListItem from "./CreditsListItem";
 import "./CreditsList.css";
 
 const CreditsList = ({ credits }) => {
-  const { cast } = credits;
-
   return (
     <div className="credits-list">
       <h1 className="cast">Cast:</h1>
-      <ul className="list">
-        {cast.map(credit => (
-          <CreditsListItem cast={credit} key={credit.id} />
-        ))}
-      </ul>
+      {credits.length !== 0 ? (
+        <ul className="list">
+          {credits.map(credit => (
+            <CreditsListItem cast={credit} key={credit.uuid} />
+          ))}
+        </ul>
+      ) : (
+        <h2>Cast list not found</h2>
+      )}
     </div>
   );
 };

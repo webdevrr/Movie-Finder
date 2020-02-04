@@ -27,7 +27,7 @@ const MovieListItem = ({ movie }) => {
     }
   };
   const renderImage = () => {
-    if (name) {
+    if (profile_path) {
       return `https://image.tmdb.org/t/p/w300/${profile_path}`;
     } else if (poster_path) {
       return `https://image.tmdb.org/t/p/w300/${poster_path}`;

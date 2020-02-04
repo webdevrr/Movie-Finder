@@ -1,10 +1,13 @@
 import React from "react";
+
+import MovieItemMovieOrTv from "./components/MovieItemMovieOrTV";
 import { Route, Switch } from "react-router-dom";
 import NotFound from "./components/NotFound";
 import MovieItem from "./components/MovieItem";
 import MovieList from "./components/MovieList";
 import Search from "./components/Search";
 import "./App.css";
+import MovieItemPerson from "./components/MovieItemPerson";
 
 const App = () => {
   return (
@@ -20,11 +23,9 @@ const App = () => {
             </div>
           )}
         />
-        <Route
-          exact
-          path="/:type/:id"
-          render={routeProps => <MovieItem {...routeProps} />}
-        />
+        <Route exact path="/person/:id" render={() => <MovieItemPerson />} />
+        <Route exact path="/:type/:id" render={() => <MovieItemMovieOrTv />} />
+
         <Route
           exact
           path="/search/:query/:page"

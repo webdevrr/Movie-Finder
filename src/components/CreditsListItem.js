@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import avatar from "../assets/avatar.png";
 import Spinner from "react-bootstrap/Spinner";
+import { Link } from "react-router-dom";
 
 import "./CreditsListItem.css";
 
@@ -20,19 +21,21 @@ const CreditsListItem = ({ cast }) => {
       >
         <Spinner className="spinner" animation="border" variant="warning" />
       </div>
-      <img
-        style={{ display: isImageLoading ? "none" : "initial" }}
-        onLoad={() => {
-          handleOnLoad();
-        }}
-        className="image"
-        src={`${
-          profile_path
-            ? `https://image.tmdb.org/t/p/w200/${profile_path}`
-            : avatar
-        }`}
-        alt={name}
-      />
+      <Link to={`/person/${cast.id}`}>
+        <img
+          style={{ display: isImageLoading ? "none" : "initial" }}
+          onLoad={() => {
+            handleOnLoad();
+          }}
+          className="image"
+          src={`${
+            profile_path
+              ? `https://image.tmdb.org/t/p/w200/${profile_path}`
+              : avatar
+          }`}
+          alt={name}
+        />
+      </Link>
       <div className="name-character">
         <p className="name">{name}</p>
         <p className="character">{character}</p>

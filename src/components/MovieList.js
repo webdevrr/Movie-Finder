@@ -13,6 +13,7 @@ const MovieList = memo(({ match }) => {
   const { query } = match.params;
   const page = parseInt(match.params.page);
   const dispatch = useDispatch();
+
   const movies = useSelector(state => state.movies.movies);
   const maxPages = useSelector(state => state.movies.maxPages);
 
@@ -34,16 +35,22 @@ const MovieList = memo(({ match }) => {
   };
   return (
     <div className="movie-list">
-      <ul className="movie-list-list">
-        {movies.map(movie => (
-          <MovieItem movie={movie} key={movie.uuid} />
-        ))}
-      </ul>
-      <PaginationCompnent
-        page={page}
-        maxPages={maxPages}
-        handleClick={handleClick}
-      />
+      {movies.length === 0 ? (
+        <h2>Results not found</h2>
+      ) : (
+        <>
+          <ul className="movie-list-list">
+            {movies.map(movie => (
+              <MovieItem movie={movie} key={movie.uuid} />
+            ))}
+          </ul>
+          <PaginationCompnent
+            page={page}
+            maxPages={maxPages}
+            handleClick={handleClick}
+          />
+        </>
+      )}
     </div>
   );
 });
