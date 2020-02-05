@@ -41,7 +41,9 @@ const CreditsListItem = ({ cast }) => {
         <b>
           <p className="character">{character}</p>
         </b>
-        <p className="name">{name}</p>
+        <Link to={`/person/${cast.id}`}>
+          <p className="name">{name}</p>
+        </Link>
       </div>
     </li>
   );

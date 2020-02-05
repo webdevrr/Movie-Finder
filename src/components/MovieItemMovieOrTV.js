@@ -99,7 +99,9 @@ const MovieItemMovieOrTV = () => {
               )}
               <div className="genres">
                 {genres
-                  ? genres.map(genre => <p key={genre.id}>{genre.name}|</p>)
+                  ? genres.map(genre => (
+                      <p key={genre.id}>{genre.name}&nbsp;|</p>
+                    ))
                   : null}
               </div>
             </div>
