@@ -1,0 +1,37 @@
+.movie-item-person {
+  margin-top: 4%;
+  display: flex;
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: center;
+}
+
+.movie-item-person .image {
+  display: flex;
+  flex-direction: column;
+  margin-right: 4%;
+}
+
+.movie-item-person .desc {
+  display: flex;
+  flex-direction: column;
+  max-width: 60%;
+}
+
+.movie-item-person .desc h1 {
+  color: #ffe066;
+  text-shadow: 2px 2px black;
+  margin-bottom: 30px;
+}
+.movie-item-person .desc p {
+  color: white;
+  margin-bottom: 2%;
+  text-align: start;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}

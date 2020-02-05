@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import moment from "moment";
 
 import avatar from "../assets/avatar.png";
 import api from "../api";
+import RolesList from "./RolesList";
 
 import "./MovieItemPerson.css";
 
@@ -12,7 +14,11 @@ const MovieItemPerson = () => {
   const [isLoading, setIsLoading] = useState(true);
   let { id } = useParams();
   let getPerson = `/3/person/${id}?api_key=${process.env.REACT_APP_APIKEY}`;
-  const { profile_path } = data;
+  const { profile_path, birthday, biography, name } = data;
+  const age = moment(birthday, "YYYY-MM-DD")
+    .fromNow()
+    .split(" ")[0];
+
   useEffect(
     () => {
       api.get(getPerson).then(res => {
@@ -27,24 +33,30 @@ const MovieItemPerson = () => {
   return (
     <>
       {isLoading ? (
-        <Spinner
-          variant="warning"
-          className="movie-item-loader "
-          animation="border"
-        />
+        <Spinner variant="warning" className="loader " animation="border" />
       ) : (
-        <div className="movie-item-person">
-          <div className="image">
-            {profile_path ? (
-              <img
-                src={`https://image.tmdb.org/t/p/w300/${profile_path}`}
-                alt=""
-              />
-            ) : (
-              <img src={avatar} alt="" />
-            )}
+        <>
+          <div className="movie-item-person">
+            <div className="image">
+              {profile_path ? (
+                <img
+                  src={`https://image.tmdb.org/t/p/w300/${profile_path}`}
+                  alt=""
+                />
+              ) : (
+                <img src={avatar} alt="" />
+              )}
+            </div>
+            <div className="desc">
+              <h1>{name}</h1>
+              <p>{biography}</p>
+              <p>
+                Birthday: {birthday} ({age} years)
+              </p>
+            </div>
           </div>
-        </div>
+          <RolesList id={id} />
+        </>
       )}
     </>
   );

@@ -1,0 +1,22 @@
+.roles-list-item {
+  margin: 2% auto;
+  width: 60%;
+  display: flex;
+  align-items: center;
+}
+.roles-list-item .image {
+  max-width: 100px;
+  border: 1px solid gray;
+}
+.roles-list-item .desc {
+  display: flex;
+  margin-left: 5%;
+}
+
+.roles-list-item .spinner-container {
+  min-width: 100px;
+  min-height: 150px;
+}
+.roles-list-item .spinner {
+  margin-top: 50%;
+}
