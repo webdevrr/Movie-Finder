@@ -5,17 +5,14 @@ import { useParams } from "react-router-dom";
 
 import MovieItem from "./MovieListItem";
 import { fetchMovies } from "../redux/actions";
-import PaginationCompnent from "./PaginationCompnent";
-
+import PaginationComponent from "./PaginationComponent";
 import "./MovieList.css";
 
-const MovieList = memo(({ match }) => {
+const MovieList = memo(() => {
   let history = useHistory();
   let { query, page } = useParams();
-
   const pageInt = parseInt(page);
   const dispatch = useDispatch();
-
   const movies = useSelector(state => state.movies.movies);
   const maxPages = useSelector(state => state.movies.maxPages);
 
@@ -46,8 +43,8 @@ const MovieList = memo(({ match }) => {
               <MovieItem movie={movie} key={movie.uuid} />
             ))}
           </ul>
-          <PaginationCompnent
-            page={page}
+          <PaginationComponent
+            page={pageInt}
             maxPages={maxPages}
             handleClick={handleClick}
           />

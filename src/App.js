@@ -1,5 +1,4 @@
 import React from "react";
-
 import MovieItemMovieOrTv from "./components/MovieItemMovieOrTV";
 import { Route, Switch } from "react-router-dom";
 import NotFound from "./components/NotFound";
@@ -28,10 +27,10 @@ const App = () => {
         <Route
           exact
           path="/search/:query/:page"
-          render={routeProps => (
+          render={() => (
             <>
               <Search />
-              <MovieList {...routeProps} />
+              <MovieList />
             </>
           )}
         />
