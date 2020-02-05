@@ -1,5 +1,7 @@
 import React from "react";
+
 import CreditsListItem from "./CreditsListItem";
+
 import "./CreditsList.css";
 
 const CreditsList = ({ credits }) => {

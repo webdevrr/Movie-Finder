@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import avatar from "../assets/avatar.png";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
+
+import avatar from "../assets/avatar.png";
 
 import "./CreditsListItem.css";
 
@@ -37,8 +38,10 @@ const CreditsListItem = ({ cast }) => {
         />
       </Link>
       <div className="name-character">
+        <b>
+          <p className="character">{character}</p>
+        </b>
         <p className="name">{name}</p>
-        <p className="character">{character}</p>
       </div>
     </li>
   );

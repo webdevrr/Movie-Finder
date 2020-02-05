@@ -4,9 +4,10 @@ import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 
-import MovieItem from "./MovieListItem";
 import { fetchMovies } from "../redux/actions";
+import MovieItem from "./MovieListItem";
 import PaginationComponent from "./PaginationComponent";
+
 import "./MovieList.css";
 
 const MovieList = memo(() => {
@@ -51,7 +52,7 @@ const MovieList = memo(() => {
             <h2>Results not found</h2>
           ) : (
             <>
-              <ul className="movie-list-list">
+              <ul className="movie-list list">
                 {movies.map(movie => (
                   <MovieItem movie={movie} key={movie.uuid} />
                 ))}

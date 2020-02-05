@@ -17,39 +17,44 @@
   flex-direction: column;
   max-width: 60%;
 }
-.movie-item-desc svg {
+.movie-item .desc svg {
   font-size: 1em;
 }
-.movie-item-desc h1 {
+.movie-item .desc h1 {
   color: #ffe066;
   text-shadow: 2px 2px black;
   margin-bottom: 30px;
 }
-.movie-item-desc p {
+.movie-item .desc p {
+  color: white;
   margin-bottom: 2%;
 }
 
-.movie-item-overview {
+.movie-item .overview {
   text-align: start;
 }
-.movie-item-score {
+.movie-item .score {
   align-items: center;
   display: flex;
 }
-.movie-item-score p {
+.movie-item .score p {
   margin-left: 5px;
 }
-.movie-item-score svg {
+.movie-item .score svg {
   margin-bottom: 2%;
 }
-.movie-item-genres {
+.movie-item .genres {
   flex-wrap: wrap;
   display: flex;
 }
-.movie-item-genres p {
+.movie-item .genres p {
   margin-right: 5px;
 }
-.movie-item-loader {
+.movie-item .release,
+.episodes {
+  display: flex;
+}
+.loader {
   position: absolute;
   top: 50%;
   left: 50%;

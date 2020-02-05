@@ -3,22 +3,21 @@
   width: 40%;
   min-height: 20vh;
 }
-.movie-list-image {
+
+.movie-list-item .title {
+  color: #ffe066;
+  text-shadow: 2px 2px black;
+}
+.movie-list-item .image {
   margin-top: 2%;
   border-radius: 5px;
   width: 70%;
   transition: transform 0.3s ease;
 }
-.movie-list-title {
-  color: #ffe066;
-  text-shadow: 2px 2px black;
-  font-size: 1em;
-}
-
-.movie-list-image:hover {
+.movie-list-item .image:hover {
   transform: scale(1.1);
 }
-.movie-list-item-spinner-container {
+.movie-list-item .spinner-container {
   position: relative;
   margin-top: 35%;
 }

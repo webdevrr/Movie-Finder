@@ -41,26 +41,22 @@ const MovieListItem = ({ movie }) => {
 
   return (
     <li className="movie-list-item">
-      <h2 className="movie-list-title">{renderTitle()}</h2>
+      <h2 className="title">{renderTitle()}</h2>
       <Link to={`/${media_type}/${id}`}>
         <div
           style={{
             display: isImageLoading ? "block" : "none"
           }}
-          className="movie-list-item-spinner-container"
+          className="spinner-container"
         >
-          <Spinner
-            className="movie-list-item-spinner"
-            animation="border"
-            variant="warning"
-          />
+          <Spinner className="spinner" animation="border" variant="warning" />
         </div>
         <img
           style={{ display: isImageLoading ? "none" : "initial" }}
           onLoad={() => {
             handleOnLoad();
           }}
-          className="movie-list-image"
+          className="image"
           src={renderImage()}
           alt={title}
         />

@@ -20,18 +20,15 @@ const Search = () => {
 
   return (
     <>
-      <form className="movie-form" onSubmit={handleSubmit}>
+      <form className="search" onSubmit={handleSubmit}>
         <input
           autoComplete="off"
-          className="movie-input"
           value={search}
           type="text"
           name="search"
           onChange={handleChange}
         />
-        <button className="movie-button" type="submit">
-          search
-        </button>
+        <button type="submit">search</button>
       </form>
     </>
   );
