@@ -11,7 +11,11 @@ const Search = () => {
   };
   const handleSubmit = e => {
     e.preventDefault();
-    history.push(`/search/${search.split(" ").join("-")}/1`);
+    if (search === "") {
+      history.push(`/search/ /1`);
+    } else {
+      history.push(`/search/${search.split(" ").join("-")}/1`);
+    }
   };
 
   return (

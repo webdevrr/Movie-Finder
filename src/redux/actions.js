@@ -1,5 +1,5 @@
 import uuid from "uuid";
-import { SET_MOVIES, SET_MAX, CLEAR_MOVIES } from "./actionTypes";
+import { SET_MOVIES, SET_MAX, CLEAR_MOVIES, SET_FETCHING } from "./actionTypes";
 import api from "../api";
 
 export const setMovies = arr => {
@@ -14,11 +14,13 @@ export const setMax = max => {
 export const clearMovies = () => {
   return { type: CLEAR_MOVIES };
 };
-
+export const fetching = () => {
+  return { type: SET_FETCHING };
+};
 export const fetchMovies = (query, page) => {
   return async dispatch => {
     dispatch(clearMovies());
-
+    dispatch(fetching());
     let res = await api.get(
       `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}&page=${page}`
     );

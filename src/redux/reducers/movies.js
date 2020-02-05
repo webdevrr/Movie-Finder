@@ -1,8 +1,14 @@
-import { SET_MOVIES, SET_MAX, CLEAR_MOVIES } from "../actionTypes";
+import {
+  SET_MOVIES,
+  SET_MAX,
+  CLEAR_MOVIES,
+  SET_FETCHING
+} from "../actionTypes";
 
 const initialState = {
   movies: [],
-  maxPages: null
+  maxPages: null,
+  isFetching: false
 };
 
 export default function(state = initialState, action) {
@@ -10,7 +16,8 @@ export default function(state = initialState, action) {
     case SET_MOVIES: {
       return {
         ...state,
-        movies: [...state.movies, ...action.payload]
+        movies: [...state.movies, ...action.payload],
+        isFetching: false
       };
     }
     case CLEAR_MOVIES: {
@@ -23,6 +30,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         maxPages: action.payload
+      };
+    }
+    case SET_FETCHING: {
+      return {
+        ...state,
+        isFetching: true
       };
     }
     default:

@@ -2,6 +2,7 @@ import React, { memo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import Spinner from "react-bootstrap/Spinner";
 
 import MovieItem from "./MovieListItem";
 import { fetchMovies } from "../redux/actions";
@@ -15,6 +16,7 @@ const MovieList = memo(() => {
   const dispatch = useDispatch();
   const movies = useSelector(state => state.movies.movies);
   const maxPages = useSelector(state => state.movies.maxPages);
+  const isFetching = useSelector(state => state.movies.isFetching);
 
   useEffect(
     () => {
@@ -32,25 +34,38 @@ const MovieList = memo(() => {
       history.push(`/search/${query}/${pageInt - 1}`);
     }
   };
+
   return (
-    <div className="movie-list">
-      {movies.length === 0 ? (
-        <h2>Results not found</h2>
-      ) : (
-        <>
-          <ul className="movie-list-list">
-            {movies.map(movie => (
-              <MovieItem movie={movie} key={movie.uuid} />
-            ))}
-          </ul>
-          <PaginationComponent
-            page={pageInt}
-            maxPages={maxPages}
-            handleClick={handleClick}
+    <>
+      {isFetching ? (
+        <div>
+          <Spinner
+            className="movie-list spinner"
+            animation="border"
+            variant="warning"
           />
-        </>
+        </div>
+      ) : (
+        <div className="movie-list">
+          {movies.length === 0 ? (
+            <h2>Results not found</h2>
+          ) : (
+            <>
+              <ul className="movie-list-list">
+                {movies.map(movie => (
+                  <MovieItem movie={movie} key={movie.uuid} />
+                ))}
+              </ul>
+              <PaginationComponent
+                page={pageInt}
+                maxPages={maxPages}
+                handleClick={handleClick}
+              />
+            </>
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 });
 
