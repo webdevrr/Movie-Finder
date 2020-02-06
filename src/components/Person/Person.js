@@ -3,13 +3,13 @@ import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import moment from "moment";
 
-import avatar from "../assets/avatar.png";
-import api from "../api";
-import RolesList from "./RolesList";
+import avatar from "../../assets/avatar.png";
+import api from "../../api";
+import RolesList from "../RolesList/RolesList";
 
-import "./MovieItemPerson.css";
+import "./Person.css";
 
-const MovieItemPerson = () => {
+const Person = () => {
   const [data, setData] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   let { id } = useParams();
@@ -36,7 +36,7 @@ const MovieItemPerson = () => {
         <Spinner variant="warning" className="loader " animation="border" />
       ) : (
         <>
-          <div className="movie-item-person">
+          <div className="person">
             <div className="image">
               {profile_path ? (
                 <img
@@ -50,9 +50,11 @@ const MovieItemPerson = () => {
             <div className="desc">
               <h1>{name}</h1>
               <p>{biography}</p>
-              <p>
-                Birthday: {birthday} ({age} years)
-              </p>
+              {age === "Invalid" ? null : (
+                <p>
+                  Birthday: {birthday} ({age} years)
+                </p>
+              )}
             </div>
           </div>
           <RolesList id={id} />
@@ -62,4 +64,4 @@ const MovieItemPerson = () => {
   );
 };
 
-export default MovieItemPerson;
+export default Person;

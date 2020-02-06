@@ -10,3 +10,7 @@ h1,
 h2 {
   color: black;
 }
+a {
+  text-decoration: underline;
+  text-decoration-color: #203239;
+}

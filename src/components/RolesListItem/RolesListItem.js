@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Spinner from "react-bootstrap/Spinner";
 import { Link } from "react-router-dom";
-import poster from "../assets/poster.png";
+import poster from "../../assets/poster.png";
 import "./RolesListItem.css";
 
 const RolesListItem = ({ role }) => {
@@ -38,7 +38,7 @@ const RolesListItem = ({ role }) => {
       </Link>
       <div className="desc">
         <Link to={`/${media_type}/${id}`}>
-          <p> {original_title ? original_title : name}</p>{" "}
+          <p> {original_title ? original_title : name}</p>
         </Link>
         &nbsp;
         <p> as {character}</p>

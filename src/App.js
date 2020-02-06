@@ -1,11 +1,13 @@
 import React from "react";
-import MovieItemMovieOrTv from "./components/MovieItemMovieOrTV";
 import { Route, Switch } from "react-router-dom";
-import NotFound from "./components/NotFound";
-import MovieList from "./components/MovieList";
-import Search from "./components/Search";
+
+import NotFound from "./components/NotFound/NotFound";
+import MovieList from "./components/MovieList/MovieList";
+import Search from "./components/Search/Search";
+import Person from "./components/Person/Person";
+import Movie from "./components/Movie/Movie";
+
 import "./App.css";
-import MovieItemPerson from "./components/MovieItemPerson";
 
 const App = () => {
   return (
@@ -21,9 +23,8 @@ const App = () => {
             </div>
           )}
         />
-        <Route exact path="/person/:id" render={() => <MovieItemPerson />} />
-        <Route exact path="/:type/:id" render={() => <MovieItemMovieOrTv />} />
-
+        <Route exact path="/person/:id" render={() => <Person />} />
+        <Route exact path="/:type/:id" render={() => <Movie />} />
         <Route
           exact
           path="/search/:query/:page"

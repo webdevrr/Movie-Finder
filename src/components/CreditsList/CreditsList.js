@@ -1,6 +1,6 @@
 import React from "react";
 
-import CreditsListItem from "./CreditsListItem";
+import CreditsListItem from "../CreditsListItem/CreditsListItem";
 
 import "./CreditsList.css";
 

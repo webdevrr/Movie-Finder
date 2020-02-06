@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import uuid from "uuid";
-import RolesListItem from "./RolesListItem";
-import api from "../api";
+import RolesListItem from "../RolesListItem/RolesListItem";
+import api from "../../api";
 import "./RolesList.css";
 
 const RolesList = ({ id }) => {

@@ -6,13 +6,14 @@ import Spinner from "react-bootstrap/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
-import poster from "../assets/poster.png";
-import api from "../api";
-import CreditsList from "./CreditsList";
+import poster from "../../assets/poster.png";
+import api from "../../api";
+import CreditsList from "../CreditsList/CreditsList";
+import ImageGallery from "../ImageGallery/ImageGallery";
 
-import "./MovieItemMovieOrTV.css";
+import "./Movie.css";
 
-const MovieItemMovieOrTV = () => {
+const Movie = () => {
   const star = <FontAwesomeIcon color="yellow" icon={faStar} size="2x" />;
   let { id, type } = useParams();
   const [data, setData] = useState({});
@@ -51,6 +52,17 @@ const MovieItemMovieOrTV = () => {
     //eslint-disable-next-line
     [id]
   );
+  const renderDate = () => {
+    if (!first_air_date && !last_air_date && !release_date) {
+      return null;
+    } else if (type === "tv") {
+      return ` (${first_air_date.split("-")[0]} - ${
+        last_air_date.split("-")[0]
+      })`;
+    } else {
+      return ` (${release_date.split("-")[0]})`;
+    }
+  };
 
   return (
     <>
@@ -72,11 +84,7 @@ const MovieItemMovieOrTV = () => {
             <div className="desc">
               <h1>
                 {title ? title : original_name}
-                {type === "tv"
-                  ? ` (${first_air_date.split("-")[0]} - ${
-                      last_air_date.split("-")[0]
-                    })`
-                  : ` (${release_date.split("-")[0]})`}
+                {renderDate()}
               </h1>
               <p className="overview">{overview}</p>
               <div className="score">
@@ -106,6 +114,7 @@ const MovieItemMovieOrTV = () => {
               </div>
             </div>
           </div>
+          <ImageGallery />
           <CreditsList credits={credits} />
         </>
       )}
@@ -113,4 +122,4 @@ const MovieItemMovieOrTV = () => {
   );
 };
 
-export default MovieItemMovieOrTV;
+export default Movie;

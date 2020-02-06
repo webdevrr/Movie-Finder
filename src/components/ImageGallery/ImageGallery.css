@@ -1,0 +1,26 @@
+.image-gallery-wrapper {
+  margin-top: 4%;
+  background-color: black;
+  overflow: hidden;
+}
+.image-gallery {
+  display: flex;
+  position: relative;
+}
+.image-gallery-wrapper .arrow {
+  transition: ease-in 0.2s;
+  cursor: pointer;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  color: white;
+  font-size: 1em;
+  position: relative;
+}
+.image-gallery-wrapper .arrow p {
+  color: white;
+  margin: 0;
+}
+.next {
+  right: 0;
+}
