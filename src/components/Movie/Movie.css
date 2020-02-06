@@ -1,56 +1,56 @@
-.movie-item {
-  margin-top: 4%;
+.movie {
+  margin: 4% 0;
   display: flex;
   width: 80%;
   margin-left: auto;
   margin-right: auto;
   align-items: center;
 }
-.movie-item .image {
+.movie .image {
   display: flex;
   flex-direction: column;
   margin-right: 4%;
 }
 
-.movie-item .desc {
+.movie .desc {
   display: flex;
   flex-direction: column;
   max-width: 60%;
 }
-.movie-item .desc svg {
+.movie .desc svg {
   font-size: 1em;
 }
-.movie-item .desc h1 {
+.movie .desc h1 {
   color: #ffe066;
   text-shadow: 2px 2px black;
   margin-bottom: 30px;
 }
-.movie-item .desc p {
+.movie .desc p {
   color: white;
   margin-bottom: 2%;
 }
 
-.movie-item .overview {
+.movie .overview {
   text-align: start;
 }
-.movie-item .score {
+.movie .score {
   align-items: center;
   display: flex;
 }
-.movie-item .score p {
+.movie .score p {
   margin-left: 5px;
 }
-.movie-item .score svg {
+.movie .score svg {
   margin-bottom: 2%;
 }
-.movie-item .genres {
+.movie .genres {
   flex-wrap: wrap;
   display: flex;
 }
-.movie-item .genres p {
+.movie .genres p {
   margin-right: 5px;
 }
-.movie-item .release,
+.movie .release,
 .episodes {
   display: flex;
 }

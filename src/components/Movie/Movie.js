@@ -70,7 +70,7 @@ const Movie = () => {
         <Spinner variant="warning" className="loader " animation="border" />
       ) : (
         <>
-          <div className="movie-item">
+          <div className="movie">
             <div className="image">
               <img
                 src={`${
