@@ -29,7 +29,7 @@ const ImageGallery = () => {
   const handleClick = arg => {
     const galleryWidth = gallery.scrollWidth;
     const maxClicks = Math.round(galleryWidth / width);
-    console.log(width, gallery.scrollWidth);
+
     if (arg === "next") {
       if (timesClicked < maxClicks && width < galleryWidth) {
         setRight(right + width);

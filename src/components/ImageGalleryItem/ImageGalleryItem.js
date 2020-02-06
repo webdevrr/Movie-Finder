@@ -1,11 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
+import Spinner from "react-bootstrap/Spinner";
 
 import "./ImageGalleryItem.css";
 
 const ImageGalleryItem = ({ image }) => {
+  const [isImageLoading, setIsImageLoading] = useState(true);
+  const handleOnLoad = () => {
+    setIsImageLoading(false);
+  };
+
   return (
     <div className="image-gallery-item">
-      <img src={`https://image.tmdb.org/t/p/original/${image}`} alt="" />
+      <Spinner
+        style={{
+          display: isImageLoading ? "block" : "none"
+        }}
+        className="spinner"
+        animation="border"
+        variant="warning"
+      />
+      <img
+        style={{ display: isImageLoading ? "none" : "initial" }}
+        onLoad={() => {
+          handleOnLoad();
+        }}
+        src={`https://image.tmdb.org/t/p/w300/${image}`}
+        alt=""
+      />
     </div>
   );
 };

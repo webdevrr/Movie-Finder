@@ -1,5 +1,7 @@
 .image-gallery-item {
+  cursor: pointer;
   min-width: 300px;
+  min-height: 160px;
   overflow: hidden;
 }
 .image-gallery-item img {
@@ -8,4 +10,9 @@
 }
 .image-gallery-item img:hover {
   transform: scale(1.3);
+}
+.image-gallery-item .spinner {
+  position: relative;
+  left: 40%;
+  top: 40%;
 }
