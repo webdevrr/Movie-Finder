@@ -1,0 +1,11 @@
+.image-gallery-item {
+  min-width: 300px;
+  overflow: hidden;
+}
+.image-gallery-item img {
+  max-width: 300px;
+  transition: transform 0.4s ease;
+}
+.image-gallery-item img:hover {
+  transform: scale(1.3);
+}

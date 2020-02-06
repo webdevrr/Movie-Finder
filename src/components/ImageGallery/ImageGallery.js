@@ -29,10 +29,9 @@ const ImageGallery = () => {
   const handleClick = arg => {
     const galleryWidth = gallery.scrollWidth;
     const maxClicks = Math.round(galleryWidth / width);
-    console.log(maxClicks);
-
+    console.log(width, gallery.scrollWidth);
     if (arg === "next") {
-      if (timesClicked < maxClicks) {
+      if (timesClicked < maxClicks && width < galleryWidth) {
         setRight(right + width);
         gsap.to(gallery, 1, { x: -right - width, ease: "power2.out" });
         setTimesClicked(timesClicked + 1);
@@ -51,7 +50,10 @@ const ImageGallery = () => {
   };
   return (
     <>
-      <div className="image-gallery-wrapper">
+      <div
+        style={images.length === 0 ? { display: "none" } : null}
+        className="image-gallery-wrapper"
+      >
         <div
           onClick={() => {
             handleClick("prev");
