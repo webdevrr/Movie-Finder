@@ -3,8 +3,9 @@ import Spinner from "react-bootstrap/Spinner";
 
 import "./ImageGalleryItem.css";
 
-const ImageGalleryItem = ({ image }) => {
+const ImageGalleryItem = ({ image, clickedImage }) => {
   const [isImageLoading, setIsImageLoading] = useState(true);
+
   const handleOnLoad = () => {
     setIsImageLoading(false);
   };
@@ -20,6 +21,8 @@ const ImageGalleryItem = ({ image }) => {
         variant="warning"
       />
       <img
+        onClick={() => clickedImage(image)}
+        className="image"
         style={{ display: isImageLoading ? "none" : "initial" }}
         onLoad={() => {
           handleOnLoad();

@@ -4,12 +4,12 @@
   min-height: 160px;
   overflow: hidden;
 }
-.image-gallery-item img {
+.image-gallery-item .image {
   max-width: 300px;
   transition: transform 0.4s ease;
 }
-.image-gallery-item img:hover {
-  transform: scale(1.3);
+.image-gallery-item .image:hover {
+  transform: scale(1.1);
 }
 .image-gallery-item .spinner {
   position: relative;
