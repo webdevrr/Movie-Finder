@@ -2,7 +2,6 @@
   cursor: auto;
   position: fixed;
   z-index: 1;
-  padding-top: 100px;
   left: 0;
   top: 0;
   width: 100%;
@@ -11,6 +10,7 @@
   background-color: rgba(0, 0, 0, 0.9);
 }
 .modal-content {
+  transform: translateY(40%);
   margin: auto;
   display: block;
   width: 80%;

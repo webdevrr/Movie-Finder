@@ -36,9 +36,16 @@ const ImageGallery = () => {
 
     if (arg === "next") {
       if (timesClicked < maxClicks && right + width < galleryWidth) {
-        setRight(right + width);
-        gsap.to(gallery, 1, { x: -right - width, ease: "power2.out" });
-        setTimesClicked(timesClicked + 1);
+        if (timesClicked + 2 === maxClicks) {
+          //on last click
+          setRight(right + width);
+          gsap.to(gallery, 1, { x: -galleryWidth + width, ease: "power2.out" });
+          setTimesClicked(timesClicked + 1);
+        } else {
+          setRight(right + width);
+          gsap.to(gallery, 1, { x: -right - width, ease: "power2.out" });
+          setTimesClicked(timesClicked + 1);
+        }
       } else {
         return null;
       }
