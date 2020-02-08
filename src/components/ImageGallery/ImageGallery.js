@@ -1,6 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import gsap from "gsap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight
+} from "@fortawesome/free-solid-svg-icons";
 
 import api from "../../api";
 import ImageGalleryItem from "../ImageGalleryItem/ImageGalleryItem";
@@ -9,6 +14,14 @@ import Modal from "../Modal/Modal";
 import "./ImageGallery.css";
 
 const ImageGallery = () => {
+  const arrowLeft = (
+    <FontAwesomeIcon color="yellow" icon={faArrowAltCircleLeft} />
+  );
+
+  const arrowRight = (
+    <FontAwesomeIcon color="yellow" icon={faArrowAltCircleRight} />
+  );
+
   const width = window.innerWidth;
   let { type, id } = useParams();
   const [images, setImages] = useState([]);
@@ -32,7 +45,7 @@ const ImageGallery = () => {
 
   const handleClick = arg => {
     const galleryWidth = gallery.scrollWidth;
-    const maxClicks = Math.round(galleryWidth / width);
+    const maxClicks = Math.ceil(galleryWidth / width);
 
     if (arg === "next") {
       if (timesClicked < maxClicks && right + width < galleryWidth) {
@@ -77,13 +90,14 @@ const ImageGallery = () => {
         style={images.length === 0 ? { display: "none" } : null}
         className="image-gallery-wrapper"
       >
-        <div
-          onClick={() => {
-            handleClick("prev");
-          }}
-          className="arrow prev"
-        >
-          <p>&lt;</p>
+        <div className="arrow prev">
+          <p
+            onClick={() => {
+              handleClick("prev");
+            }}
+          >
+            {arrowLeft}
+          </p>
         </div>
         <div
           className="image-gallery"
@@ -99,13 +113,14 @@ const ImageGallery = () => {
             />
           ))}
         </div>
-        <div
-          onClick={() => {
-            handleClick("next");
-          }}
-          className="arrow next"
-        >
-          <p>&gt;</p>
+        <div className="arrow next">
+          <p
+            onClick={() => {
+              handleClick("next");
+            }}
+          >
+            {arrowRight}
+          </p>
         </div>
       </div>
       <Modal

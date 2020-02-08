@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  height: 100vh;
+  min-height: 90vh;
 }
 .App h2 {
   font-size: 1.3em;

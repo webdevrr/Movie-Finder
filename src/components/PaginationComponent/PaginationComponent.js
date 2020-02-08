@@ -1,5 +1,6 @@
 import React from "react";
 import Pagination from "react-bootstrap/Pagination";
+import "./PaginationCompnent.css";
 
 const PaginationCompnent = ({ page, maxPages, handleClick }) => {
   return (

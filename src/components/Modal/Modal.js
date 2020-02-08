@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Modal.css";
+import Spinner from "react-bootstrap/Spinner";
 
 const Modal = ({ img, showModal, hideModal }) => {
+  const [isImageLoading, setIsImageLoading] = useState(true);
+
+  const handleOnLoad = () => {
+    setIsImageLoading(false);
+  };
   return (
     <div
       onClick={hideModal}
@@ -9,7 +15,22 @@ const Modal = ({ img, showModal, hideModal }) => {
       style={{ display: showModal ? "block" : "none" }}
     >
       <span className="close">&times;</span>
-      <img className="modal-content" src={img} alt="" />
+      <Spinner
+        style={{
+          display: isImageLoading ? "block" : "none"
+        }}
+        className="spinner"
+        animation="border"
+        variant="warning"
+      />
+      <img
+        onLoad={() => {
+          handleOnLoad();
+        }}
+        className="modal-content"
+        src={img}
+        alt=""
+      />
     </div>
   );
 };

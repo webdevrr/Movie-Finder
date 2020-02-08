@@ -10,10 +10,16 @@
   background-color: rgba(0, 0, 0, 0.9);
   padding-top: 3%;
 }
+
 .modal-content {
   margin: auto;
   display: block;
   width: 80%;
+}
+.modal .spinner {
+  position: relative;
+  left: 50%;
+  top: 50%;
 }
 .close {
   position: absolute;

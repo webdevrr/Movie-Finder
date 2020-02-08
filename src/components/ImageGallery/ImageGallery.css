@@ -5,7 +5,6 @@
   display: flex;
 }
 .image-gallery-wrapper .arrow {
-  cursor: pointer;
   justify-content: center;
   display: flex;
   align-items: center;
@@ -14,6 +13,7 @@
   position: relative;
 }
 .image-gallery-wrapper .arrow p {
+  cursor: pointer;
   transition: ease-in 0.2s;
   color: white;
   margin: 0;
