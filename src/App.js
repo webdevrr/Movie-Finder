@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Route, Switch } from "react-router-dom";
 
 import NotFound from "./components/NotFound/NotFound";
@@ -8,6 +7,7 @@ import Search from "./components/Search/Search";
 import Person from "./components/Person/Person";
 import Movie from "./components/Movie/Movie";
 import Footer from "./components/Footer/Footer";
+import MainPage from "./components/MainPage/MainPage";
 
 import "./App.css";
 
@@ -20,10 +20,12 @@ const App = () => {
             path="/"
             exact
             render={() => (
-              <div className="app-search">
-                <Search />
-                <h2>Search for movies, TV series or people</h2>
-              </div>
+              <>
+                <div className="app-search">
+                  <Search />
+                </div>
+                <MainPage />
+              </>
             )}
           />
           <Route exact path="/person/:id" component={Person} />
