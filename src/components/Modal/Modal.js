@@ -1,10 +1,10 @@
 import React from "react";
 import "./Modal.css";
 
-const Modal = ({ img, showModal, toggleModal }) => {
+const Modal = ({ img, showModal, hideModal }) => {
   return (
     <div
-      onClick={toggleModal}
+      onClick={hideModal}
       className="modal"
       style={{ display: showModal ? "block" : "none" }}
     >

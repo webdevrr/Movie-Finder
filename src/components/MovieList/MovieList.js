@@ -1,12 +1,12 @@
-import React, { memo, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { memo, useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
+import uuid from "uuid";
 
-import { fetchMovies } from "../../redux/actions";
 import MovieListItem from "../MovieListItem/MovieListItem";
 import PaginationComponent from "../PaginationComponent/PaginationComponent";
+import api from "../../api";
 
 import "./MovieList.css";
 
@@ -14,14 +14,27 @@ const MovieList = memo(() => {
   let history = useHistory();
   let { query, page } = useParams();
   const pageInt = parseInt(page);
-  const dispatch = useDispatch();
-  const movies = useSelector(state => state.movies.movies);
-  const maxPages = useSelector(state => state.movies.maxPages);
-  const isFetching = useSelector(state => state.movies.isFetching);
+
+  const [movies, setMovies] = useState([]);
+  const [maxPages, setMaxPages] = useState(null);
+  const [isFetching, setIsFetching] = useState(false);
 
   useEffect(
     () => {
-      dispatch(fetchMovies(query, page));
+      setIsFetching(true);
+      setMovies([]);
+      api
+        .get(
+          `/3/search/multi?api_key=${process.env.REACT_APP_APIKEY}&query=${query}&page=${page}`
+        )
+        .then(res => {
+          const responseData = res.data.results;
+          const maxPages = res.data.total_pages;
+          const addedUuid = responseData.map(v => ({ ...v, uuid: uuid() }));
+          setMovies(addedUuid);
+          setMaxPages(maxPages);
+          setIsFetching(false);
+        });
     },
     //eslint-disable-next-line
     [page, query]

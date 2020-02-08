@@ -60,12 +60,16 @@ const ImageGallery = () => {
     }
   };
 
-  const toggleModal = () => {
-    setModalShow(!showModal);
+  const openModal = () => {
+    setModalShow(true);
+  };
+  const hideModal = () => {
+    setImage(null);
+    setModalShow(false);
   };
   const clickedImage = img => {
     setImage(img);
-    toggleModal();
+    openModal();
   };
   return (
     <>
@@ -105,7 +109,7 @@ const ImageGallery = () => {
         </div>
       </div>
       <Modal
-        toggleModal={toggleModal}
+        hideModal={hideModal}
         showModal={showModal}
         img={`https://image.tmdb.org/t/p/original/${image}`}
       />
