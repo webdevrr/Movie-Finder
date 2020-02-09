@@ -1,0 +1,9 @@
+.logo {
+  cursor: pointer;
+  position: absolute;
+  left: 20px;
+  top: 10px;
+}
+.logo img {
+  width: 100px;
+}

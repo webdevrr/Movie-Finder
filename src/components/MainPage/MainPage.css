@@ -1,10 +1,14 @@
+.main-page-wrapper {
+  background-color: white;
+  padding-bottom: 2%;
+}
+
 .main-page {
   width: 50%;
   margin: auto;
 }
 .main-page h1 {
-  color: #ffe066;
-  text-shadow: 2px 2px black;
+  color: black;
 }
 
 .flex {

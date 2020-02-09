@@ -2,6 +2,7 @@
   width: 25%;
   cursor: pointer;
   overflow: hidden;
+  border: 1px solid black;
 }
 .main-page-item .image {
   width: 100%;

@@ -1,0 +1,9 @@
+.not-found {
+  font-size: 10em;
+  color: #ffe066;
+  text-shadow: 2px 2px black;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+}

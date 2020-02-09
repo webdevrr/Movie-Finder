@@ -21,12 +21,14 @@ const MainPage = () => {
   );
 
   return (
-    <div className="main-page">
-      <h1>Trending this week</h1>
-      <div className="flex">
-        {trending.map((trend, index) => (
-          <MainPageItem key={index} item={trend} />
-        ))}
+    <div className="main-page-wrapper">
+      <div className="main-page">
+        <h1>Trending this week</h1>
+        <div className="flex">
+          {trending.map((trend, index) => (
+            <MainPageItem key={index} item={trend} />
+          ))}
+        </div>
       </div>
     </div>
   );

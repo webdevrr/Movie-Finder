@@ -1,4 +1,5 @@
 import React from "react";
+
 import { Route, Switch } from "react-router-dom";
 
 import NotFound from "./components/NotFound/NotFound";
@@ -8,6 +9,7 @@ import Person from "./components/Person/Person";
 import Movie from "./components/Movie/Movie";
 import Footer from "./components/Footer/Footer";
 import MainPage from "./components/MainPage/MainPage";
+import Logo from "./components/Logo/Logo";
 
 import "./App.css";
 
@@ -15,6 +17,7 @@ const App = () => {
   return (
     <>
       <div className="App">
+        <Logo />
         <Switch>
           <Route
             path="/"
