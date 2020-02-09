@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import "./MainPageItem.css";
 
 const MainPageItem = ({ item }) => {
-  const { poster_path, vote_average, media_type, id } = item;
+  const { poster_path, media_type, id } = item;
   let history = useHistory();
 
   const handleClick = () => {

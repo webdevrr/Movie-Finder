@@ -7,6 +7,7 @@ import "./RolesList.css";
 const RolesList = ({ id }) => {
   const getRoles = `/3/person/${id}/combined_credits?api_key=${process.env.REACT_APP_APIKEY}`;
   const [roles, setRoles] = useState([]);
+
   useEffect(
     () => {
       api.get(getRoles).then(response => {

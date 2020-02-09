@@ -7,6 +7,8 @@
   align-items: center;
 }
 .movie .image {
+  max-width: 300px;
+  min-width: 300px;
   display: flex;
   flex-direction: column;
   margin-right: 4%;
@@ -58,4 +60,31 @@
   position: absolute;
   top: 50%;
   left: 50%;
+}
+@media (max-width: 979px) {
+}
+
+@media (max-width: 767px) {
+  .movie {
+    width: 100%;
+  }
+  .movie .desc p {
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 480px) {
+  .movie {
+    width: 100%;
+  }
+  .movie .image {
+    max-width: 150px;
+    min-width: 150px;
+  }
+  .movie img {
+    width: 100%;
+  }
+  .movie .desc h1 {
+    font-size: 1.2em;
+  }
 }

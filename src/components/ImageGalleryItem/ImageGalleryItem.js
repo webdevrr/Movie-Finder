@@ -24,9 +24,7 @@ const ImageGalleryItem = ({ image, clickedImage }) => {
         onClick={() => clickedImage(image)}
         className="image"
         style={{ display: isImageLoading ? "none" : "initial" }}
-        onLoad={() => {
-          handleOnLoad();
-        }}
+        onLoad={handleOnLoad}
         src={`https://image.tmdb.org/t/p/w300/${image}`}
         alt=""
       />

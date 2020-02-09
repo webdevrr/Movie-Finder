@@ -23,14 +23,7 @@ const Modal = ({ img, showModal, hideModal }) => {
         animation="border"
         variant="warning"
       />
-      <img
-        onLoad={() => {
-          handleOnLoad();
-        }}
-        className="modal-content"
-        src={img}
-        alt=""
-      />
+      <img onLoad={handleOnLoad} className="modal-content" src={img} alt="" />
     </div>
   );
 };

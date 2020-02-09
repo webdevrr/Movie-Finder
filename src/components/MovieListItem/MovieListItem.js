@@ -53,9 +53,7 @@ const MovieListItem = ({ movie }) => {
         </div>
         <img
           style={{ display: isImageLoading ? "none" : "initial" }}
-          onLoad={() => {
-            handleOnLoad();
-          }}
+          onLoad={handleOnLoad}
           className="image"
           src={renderImage()}
           alt={title}

@@ -11,3 +11,20 @@
   display: flex;
   flex-wrap: wrap;
 }
+@media (max-width: 979px) {
+  .main-page {
+    margin-bottom: 10%;
+  }
+}
+
+@media (max-width: 767px) {
+  .main-page h1 {
+    font-size: 1.5em;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-page h1 {
+    font-size: 1em;
+  }
+}

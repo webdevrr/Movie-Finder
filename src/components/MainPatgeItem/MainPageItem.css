@@ -10,3 +10,14 @@
 .main-page-item .image:hover {
   transform: scale(1.1);
 }
+@media (max-width: 979px) {
+  .main-page-item {
+    width: 50%;
+  }
+}
+
+@media (max-width: 767px) {
+}
+
+@media (max-width: 480px) {
+}

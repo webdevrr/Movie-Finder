@@ -24,9 +24,7 @@ const RolesListItem = ({ role }) => {
       <Link to={`/${media_type}/${id}`}>
         <img
           style={{ display: isImageLoading ? "none" : "initial" }}
-          onLoad={() => {
-            handleOnLoad();
-          }}
+          onLoad={handleOnLoad}
           className="image"
           src={`${
             poster_path

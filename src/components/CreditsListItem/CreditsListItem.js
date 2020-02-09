@@ -25,9 +25,7 @@ const CreditsListItem = ({ cast }) => {
       <Link to={`/person/${cast.id}`}>
         <img
           style={{ display: isImageLoading ? "none" : "initial" }}
-          onLoad={() => {
-            handleOnLoad();
-          }}
+          onLoad={handleOnLoad}
           className="image"
           src={`${
             profile_path

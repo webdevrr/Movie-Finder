@@ -21,3 +21,17 @@
   position: relative;
   margin-top: 35%;
 }
+@media (max-width: 979px) {
+}
+
+@media (max-width: 767px) {
+  .movie-list-item .title {
+    font-size: 1em;
+  }
+  .movie-list-item .image {
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+}

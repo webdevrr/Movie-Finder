@@ -18,3 +18,15 @@
 .pagination .counter {
   pointer-events: none;
 }
+
+@media (max-width: 979px) {
+}
+
+@media (max-width: 767px) {
+}
+
+@media (max-width: 480px) {
+  .movie-list .list {
+    width: 100%;
+  }
+}
