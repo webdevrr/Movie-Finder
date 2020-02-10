@@ -17,7 +17,7 @@ const App = () => {
   return (
     <>
       <div className="App">
-        <Logo />
+        {/* <Logo /> */}
         <Switch>
           <Route
             path="/"
