@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../assets/movie-logo.png";
 import { useHistory } from "react-router-dom";
 import "./Logo.css";
 
@@ -10,7 +9,7 @@ const Logo = () => {
   };
   return (
     <div className="logo">
-      <img onClick={handleClick} src={logo} alt="" />
+      <h1 onClick={handleClick}>Movie Finder</h1>
     </div>
   );
 };

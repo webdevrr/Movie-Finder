@@ -3,3 +3,7 @@
   width: 100%;
   background-color: white;
 }
+.credits-list .more {
+  cursor: pointer;
+  color: #007bff;
+}

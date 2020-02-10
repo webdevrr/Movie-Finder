@@ -18,7 +18,6 @@ const RolesList = ({ id }) => {
         };
         const filterRoles = response.data.cast.filter(filter);
         const roles = filterRoles.map(r => ({ ...r, uuid: uuid() }));
-
         setRoles(roles);
       });
     },

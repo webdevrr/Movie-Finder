@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import uuid from "uuid";
 import { useParams } from "react-router-dom";
 import Spinner from "react-bootstrap/Spinner";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -17,7 +15,7 @@ const Movie = () => {
   const star = <FontAwesomeIcon color="yellow" icon={faStar} size="2x" />;
   let { id, type } = useParams();
   const [data, setData] = useState({});
-  const [credits, setCredits] = useState({});
+
   const [isLoading, setIsLoading] = useState(true);
   const {
     poster_path,
@@ -35,19 +33,13 @@ const Movie = () => {
   } = data;
 
   const getMovieOrTV = `/3/${type}/${id}?api_key=${process.env.REACT_APP_APIKEY}`;
-  const getCredits = `/3/${type}/${id}/credits?api_key=${process.env.REACT_APP_APIKEY}`;
 
   useEffect(
     () => {
-      axios.all([api.get(getMovieOrTV), api.get(getCredits)]).then(
-        axios.spread((data, credits) => {
-          let cred = credits.data.cast;
-          const c = cred.map(c => ({ ...c, uuid: uuid() }));
-          setData(data.data);
-          setCredits(c);
-          setIsLoading(false);
-        })
-      );
+      api.get(getMovieOrTV).then(response => {
+        setData(response.data);
+        setIsLoading(false);
+      });
     },
     //eslint-disable-next-line
     [id]
@@ -115,7 +107,7 @@ const Movie = () => {
             </div>
           </div>
           <ImageGallery />
-          <CreditsList credits={credits} />
+          <CreditsList />
         </>
       )}
     </>
