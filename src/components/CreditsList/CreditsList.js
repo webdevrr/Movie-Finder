@@ -45,7 +45,6 @@ const CreditsList = () => {
   };
   return (
     <div className="credits-list">
-      <h1 className="cast">Cast:</h1>
       {credits.length !== 0 ? (
         <ul className="list">
           {credits.map(credit => (

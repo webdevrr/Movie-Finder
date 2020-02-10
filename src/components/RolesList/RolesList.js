@@ -26,7 +26,6 @@ const RolesList = ({ id }) => {
   );
   return (
     <div className="roles-list">
-      <h1 className="cast">Roles:</h1>
       <ul>
         {roles.map(role => (
           <RolesListItem role={role} key={role.uuid} />

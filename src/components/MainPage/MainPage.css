@@ -1,11 +1,10 @@
 .main-page-wrapper {
   background-color: white;
-  padding-bottom: 2%;
+  padding: 2% 0;
 }
 
 .main-page {
-  width: 51%;
-  margin: auto;
+  margin: 0 20%;
 }
 .main-page h1 {
   color: black;
