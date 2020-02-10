@@ -10,6 +10,7 @@ import "./CreditsList.css";
 const CreditsList = () => {
   const [creditsFull, setCreditsFull] = useState([]);
   const [credits, setCredits] = useState([]);
+  const [isFull, setIsFull] = useState(false);
 
   let { id, type } = useParams();
   const getCredits = `/3/${type}/${id}/credits?api_key=${process.env.REACT_APP_APIKEY}`;
@@ -28,6 +29,19 @@ const CreditsList = () => {
   );
   const handleClick = () => {
     setCredits(creditsFull);
+    setIsFull(true);
+  };
+
+  const renderMore = () => {
+    if (credits.length < 10 || isFull === true) {
+      return null;
+    } else {
+      return (
+        <p onClick={handleClick} className="more">
+          show full...
+        </p>
+      );
+    }
   };
   return (
     <div className="credits-list">
@@ -41,11 +55,7 @@ const CreditsList = () => {
       ) : (
         <h2>Cast list not found</h2>
       )}
-      {credits !== creditsFull ? (
-        <p onClick={handleClick} className="more">
-          show more...
-        </p>
-      ) : null}
+      {renderMore()}
     </div>
   );
 };
