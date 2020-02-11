@@ -84,6 +84,23 @@ const ImageGallery = () => {
     setImage(img);
     openModal();
   };
+  const changeImageInModal = (arg, img) => {
+    const currentIndex = images.findIndex(p => p.file_path === img);
+    const lastIndex = images.length - 1;
+    if (arg === "next") {
+      if (lastIndex === currentIndex) {
+        setImage(images[0].file_path);
+      } else {
+        setImage(images[currentIndex + 1].file_path);
+      }
+    } else {
+      if (currentIndex === 0) {
+        setImage(images[lastIndex].file_path);
+      } else {
+        setImage(images[currentIndex - 1].file_path);
+      }
+    }
+  };
   return (
     <>
       <div
@@ -124,9 +141,10 @@ const ImageGallery = () => {
         </div>
       </div>
       <Modal
+        changeImageInModal={changeImageInModal}
         hideModal={hideModal}
         showModal={showModal}
-        img={`https://image.tmdb.org/t/p/original/${image}`}
+        img={image}
       />
     </>
   );
