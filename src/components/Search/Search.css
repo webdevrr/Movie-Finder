@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 40px;
+  background-color: black;
 }
 
 .search input {
@@ -15,7 +16,12 @@
   text-align: center;
 }
 .search button {
-  cursor: pointer;
-  height: 60%;
-  width: 80px;
+  height: 80%;
+  background: #ffe066;
+  border: 1px solid #000000;
+  border-radius: 3px;
+  padding: 0 10px;
+  color: #000000;
+  display: inline-block;
+  text-align: center;
 }

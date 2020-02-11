@@ -9,7 +9,6 @@ import Person from "./components/Person/Person";
 import Movie from "./components/Movie/Movie";
 import Footer from "./components/Footer/Footer";
 import MainPage from "./components/MainPage/MainPage";
-import Logo from "./components/Logo/Logo";
 
 import "./App.css";
 
@@ -17,32 +16,22 @@ const App = () => {
   return (
     <>
       <div className="App">
-        {/* <Logo /> */}
+        <Search />
+
         <Switch>
           <Route
             path="/"
             exact
             render={() => (
               <>
-                <div className="app-search">
-                  <Search />
-                </div>
+                <div className="app-search"></div>
                 <MainPage />
               </>
             )}
           />
           <Route exact path="/person/:id" component={Person} />
           <Route exact path="/:type/:id" component={Movie} />
-          <Route
-            exact
-            path="/search/:query/:page"
-            render={() => (
-              <>
-                <Search />
-                <MovieList />
-              </>
-            )}
-          />
+          <Route exact path="/search/:query/:page" component={MovieList} />
           <Route component={NotFound} />
         </Switch>
       </div>

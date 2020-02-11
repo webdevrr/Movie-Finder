@@ -62,7 +62,7 @@ const MovieList = memo(() => {
       ) : (
         <div className="movie-list">
           {movies.length === 0 ? (
-            <h2>Results not found</h2>
+            <h2 className="no-results">Results not found</h2>
           ) : (
             <>
               <ul className="movie-list list">

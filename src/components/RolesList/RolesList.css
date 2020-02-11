@@ -4,3 +4,7 @@
   width: 100%;
   background-color: white;
 }
+.roles-list .more {
+  cursor: pointer;
+  color: #007bff;
+}
