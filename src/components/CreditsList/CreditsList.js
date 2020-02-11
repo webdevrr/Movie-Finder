@@ -11,18 +11,21 @@ const CreditsList = () => {
   const [creditsFull, setCreditsFull] = useState([]);
   const [credits, setCredits] = useState([]);
   const [isFull, setIsFull] = useState(false);
-
+  const creditsRange = 7;
   let { id, type } = useParams();
   const getCredits = `/3/${type}/${id}/credits?api_key=${process.env.REACT_APP_APIKEY}`;
   useEffect(
     () => {
-      api.get(getCredits).then(response => {
-        let cred = response.data.cast;
-        const cast = cred.map(c => ({ ...c, uuid: uuid() }));
-        const range = cast.slice(0, 10);
-        setCreditsFull(cast);
-        setCredits(range);
-      });
+      api
+        .get(getCredits)
+        .then(response => {
+          let cred = response.data.cast;
+          const cast = cred.map(c => ({ ...c, uuid: uuid() }));
+          const range = cast.slice(0, creditsRange);
+          setCreditsFull(cast);
+          setCredits(range);
+        })
+        .catch(err => console.log(err));
     },
     //eslint-disable-next-line
     []
@@ -33,7 +36,7 @@ const CreditsList = () => {
   };
 
   const renderMore = () => {
-    if (credits.length < 10 || isFull === true) {
+    if (credits.length < creditsRange || isFull === true) {
       return null;
     } else {
       return (

@@ -11,10 +11,13 @@ const MainPage = () => {
 
   useEffect(
     () => {
-      api.get(getTrending).then(response => {
-        const sixItems = response.data.results.slice(0, 8);
-        setTrending(sixItems);
-      });
+      api
+        .get(getTrending)
+        .then(response => {
+          const sixItems = response.data.results.slice(0, 8);
+          setTrending(sixItems);
+        })
+        .catch(err => console.log(err));
     },
     //eslint-disable-next-line
     []

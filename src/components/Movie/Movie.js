@@ -36,10 +36,13 @@ const Movie = () => {
 
   useEffect(
     () => {
-      api.get(getMovieOrTV).then(response => {
-        setData(response.data);
-        setIsLoading(false);
-      });
+      api
+        .get(getMovieOrTV)
+        .then(response => {
+          setData(response.data);
+          setIsLoading(false);
+        })
+        .catch(err => console.log(err));
     },
     //eslint-disable-next-line
     [id]

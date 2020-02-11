@@ -34,7 +34,8 @@ const MovieList = memo(() => {
           setMovies(addedUuid);
           setMaxPages(maxPages);
           setIsFetching(false);
-        });
+        })
+        .catch(err => console.log(err));
     },
     //eslint-disable-next-line
     [page, query]

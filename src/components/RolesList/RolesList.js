@@ -9,20 +9,24 @@ const RolesList = ({ id }) => {
   const [rolesFull, setRolesFull] = useState([]);
   const [roles, setRoles] = useState([]);
   const [isFull, setIsFull] = useState(false);
+  const rolesRange = 7;
   useEffect(
     () => {
-      api.get(getRoles).then(response => {
-        const filter = obj => {
-          if (obj.character !== "") {
-            return obj;
-          }
-        };
-        const filterRoles = response.data.cast.filter(filter);
-        const roles = filterRoles.map(r => ({ ...r, uuid: uuid() }));
-        const range = roles.slice(0, 10);
-        setRolesFull(roles);
-        setRoles(range);
-      });
+      api
+        .get(getRoles)
+        .then(response => {
+          const filter = obj => {
+            if (obj.character !== "") {
+              return obj;
+            }
+          };
+          const filterRoles = response.data.cast.filter(filter);
+          const roles = filterRoles.map(r => ({ ...r, uuid: uuid() }));
+          const range = roles.slice(0, rolesRange);
+          setRolesFull(roles);
+          setRoles(range);
+        })
+        .catch(err => console.log(err));
     },
     //eslint-disable-next-line
     []
@@ -33,7 +37,7 @@ const RolesList = ({ id }) => {
   };
 
   const renderMore = () => {
-    if (roles.length < 10 || isFull === true) {
+    if (roles.length < rolesRange || isFull === true) {
       return null;
     } else {
       return (

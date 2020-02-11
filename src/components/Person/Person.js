@@ -21,10 +21,13 @@ const Person = () => {
 
   useEffect(
     () => {
-      api.get(getPerson).then(res => {
-        setData(res.data);
-        setIsLoading(false);
-      });
+      api
+        .get(getPerson)
+        .then(res => {
+          setData(res.data);
+          setIsLoading(false);
+        })
+        .catch(err => console.log(err));
     },
     //eslint-disable-next-line
     []

@@ -1,18 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import Logo from "../Logo/Logo";
 
 import "./Search.css";
 
 const Search = () => {
+  const mediaMatch = window.matchMedia("(max-width: 767px)");
+  const [matches, setMatches] = useState(mediaMatch.matches);
+  useEffect(() => {
+    const handler = e => setMatches(e.matches);
+    mediaMatch.addListener(handler);
+    return () => mediaMatch.removeListener(handler);
+  });
+
   let history = useHistory();
 
   const [search, setSearch] = useState(
     "Search for movies, TV series, or people"
   );
-  const handleChange = e => {
-    setSearch(e.currentTarget.value);
-  };
+
   const handleSubmit = e => {
     e.preventDefault();
     if (search === "") {
@@ -21,16 +26,25 @@ const Search = () => {
       history.push(`/search/${search.split(" ").join("-")}/1`);
     }
   };
+  const handleChange = e => {
+    setSearch(e.currentTarget.value);
+  };
   const handleOnFocus = () => {
     setSearch("");
   };
   const handleOnBlur = () => {
     setSearch("Search for movies, TV series, or people");
   };
+
+  const handleOnClick = () => {
+    history.push("/");
+  };
   return (
     <>
       <form className="search" onSubmit={handleSubmit}>
-        {/* <Logo /> */}
+        <div className="logo" style={{ left: matches ? "5%" : "10%" }}>
+          <h1 onClick={handleOnClick}>{matches ? "MF" : "MovieFinder"}</h1>
+        </div>
         <input
           autoComplete="off"
           value={search}

@@ -1,4 +1,6 @@
 .search {
+  font-size: 1em;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -24,4 +26,33 @@
   color: #000000;
   display: inline-block;
   text-align: center;
+}
+
+.search .logo {
+  position: absolute;
+  cursor: pointer;
+}
+.search .logo h1 {
+  font-family: "Oswald", sans-serif;
+  font-size: 1.75em;
+  margin-bottom: 0;
+  color: #01d277;
+}
+
+@media (max-width: 979px) {
+  .search input {
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 767px) {
+  .search input {
+    width: 50%;
+  }
+}
+
+@media (max-width: 480px) {
+  .search .logo h1 {
+    font-size: 1.25em;
+  }
 }

@@ -34,10 +34,13 @@ const ImageGallery = () => {
   const getImages = `https://api.themoviedb.org/3/${type}/${id}/images?api_key=${process.env.REACT_APP_APIKEY}&language=null`;
   useEffect(
     () => {
-      api.get(getImages).then(response => {
-        const backdrops = response.data.backdrops;
-        setImages(backdrops);
-      });
+      api
+        .get(getImages)
+        .then(response => {
+          const backdrops = response.data.backdrops;
+          setImages(backdrops);
+        })
+        .catch(err => console.log(err));
     },
     //eslint-disable-next-line
     []
